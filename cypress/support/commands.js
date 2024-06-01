@@ -20,17 +20,17 @@ Cypress.Commands.add('assertProductAdded', (productId) => {
   return cy.get(`#${productId}`).should('exist');
 });
 
-Cypress.Commands.add('addToCart', (productId) => {
+Cypress.Commands.add('addProductToCart', (productId) => {
   return cy.request({
     method: 'GET',
     url: `/add_to_cart/${productId}`,
   });
 });
 
-Cypress.Commands.add('generateUser', userDataAPI => {
+Cypress.Commands.add('generateUser', userDataApi => {
   const uniqueEmail = faker.internet.email();
   const uniqueUser = {
-    ...userDataAPI,
+    ...userDataApi,
     email: uniqueEmail,
   };
 
@@ -45,28 +45,28 @@ Cypress.Commands.add('generateUser', userDataAPI => {
   });
 });
 
-Cypress.Commands.add('deleteUserAccount', userDataAPI => {
+Cypress.Commands.add('deleteUserAccount', userDataApi => {
   return cy.request({
     method: 'DELETE',
     url: '/api/deleteAccount',
     form: true,
     body: {
-      email: userDataAPI.email,
-      password: userDataAPI.password
+      email: userDataApi.email,
+      password: userDataApi.password
     }
   }).then((response) => {
     cy.log(`Response body: ${JSON.stringify(response.body)}`);
   });
 });
 
-Cypress.Commands.add('verifyLogin', userDataAPI => {
+Cypress.Commands.add('verifyLogin', userDataApi => {
   return cy.request({
     method: 'POST',
     url: '/api/verifyLogin',
     form: true,
     body: {
-      email: userDataAPI.email,
-      password: userDataAPI.password
+      email: userDataApi.email,
+      password: userDataApi.password
     },
   }).then((response) => {
     cy.log(`Response body: ${JSON.stringify(response.body)}`);

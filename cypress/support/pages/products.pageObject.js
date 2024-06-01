@@ -8,7 +8,7 @@ class ProductsPageObject extends PageObject {
   }
 
   clickContinueShoppingBtn() {
-    cy.get('.modal-footer > .btn').click();
+    cy.contains('.btn', 'Continue Shopping').click();
   }
 }
 

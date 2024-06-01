@@ -32,9 +32,9 @@ describe('Checkout process', () => {
   });
 
   it('should allow to complete checkout', () => {
-    cy.addToCart(1);
-    cy.addToCart(2);
-    cy.addToCart(3);
+    cy.addProductToCart(1);
+    cy.addProductToCart(2);
+    cy.addProductToCart(3);
 
     cartPage.visit();
 
