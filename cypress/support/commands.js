@@ -12,12 +12,12 @@ Cypress.Commands.add('getByProductId', (productId) => {
   return cy.get(`[data-product-id='${productId}']`).first();
 });
 
-Cypress.Commands.add('assertLoggedInUser', (firstName) => {
-  return cy.get('li > a > b').should('contain', firstName);
+Cypress.Commands.add('assertProductAdded', (elementId) => {
+  return cy.get(`#${elementId}`).should('exist');
 });
 
-Cypress.Commands.add('assertProductAdded', (productId) => {
-  return cy.get(`#${productId}`).should('exist');
+Cypress.Commands.add('assertLoggedInUser', (firstName) => {
+  return cy.get('li > a > b').should('contain', firstName);
 });
 
 Cypress.Commands.add('addProductToCart', (productId) => {

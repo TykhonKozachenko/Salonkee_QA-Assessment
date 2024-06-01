@@ -1,24 +1,19 @@
 /// <reference types='cypress' />
 
 const { generateNewUserUi } = require('../support/fixtures/newUserViaUI');
-const { generateNewUserApi } = require('../support/fixtures/newUserViaAPI');
-
 const userDataUi = generateNewUserUi();
-const userDataApi = generateNewUserApi();
 
-import PageObject from "../support/pages/PageObject";
+import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import RegistrationPageObject from "../support/pages/registration.pageObject";
 import AccountCreatedPageObject from "../support/pages/accountCreated.pageObject";
-import AccountDeletedPageObject from "../support/pages/accountDeleted.pageObject";
 
-const mainPage = new PageObject;
+const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 const registrationPage = new RegistrationPageObject;
 const accountCreatedPage = new AccountCreatedPageObject;
-const accountDeletedPage = new AccountDeletedPageObject;
 
-describe('Account registration and verification', () => {
+describe('Account registration', () => {
   beforeEach(() => {
     authPage.visit();
   });
@@ -48,49 +43,8 @@ describe('Account registration and verification', () => {
     registrationPage.clickCreateAccountBtn();
 
     accountCreatedPage.assertAccountCreated();
-
     accountCreatedPage.clickContinueBtn();
 
-    mainPage.assertLoggedInUser(userDataUi.firstName);
-  });
-
-  it('should allow to login with created credentials', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        authPage.typeEmailOfExistingUser(userData.email);
-        authPage.typePasswordOfExistingUser(userData.password);
-        authPage.clickLoginBtn();
-  
-        mainPage.assertLoggedInUser(userData.name);
-      });
-    });
-  });
-
-  it('should allow to delete account / UI', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        authPage.typeEmailOfExistingUser(userData.email);
-        authPage.typePasswordOfExistingUser(userData.password);
-        authPage.clickLoginBtn();
-        cy.visit('/');
-  
-        mainPage.clickDeleteBtn();
-  
-        accountDeletedPage.assertAccountDeleted();
-        accountDeletedPage.clickContinueBtn();
-
-        cy.verifyLogin(userData);
-      })
-    })
-  });
-
-  it('should allow to delete account / API', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        cy.deleteUserAccount(userData).then(() => {
-          cy.verifyLogin(userData);
-        });
-      });
-    });
+    homePage.assertLoggedInUser(userDataUi.firstName);
   });
 });

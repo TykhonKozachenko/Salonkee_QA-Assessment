@@ -1,14 +1,17 @@
 /// <reference types='cypress' />
 
 const { existingUserData } = require('../support/fixtures/existingUser');
-const userData = existingUserData();
+const { productsData } = require('../support/fixtures/productsData');
 
-import PageObject from "../support/pages/PageObject";
+const userData = existingUserData();
+const product = productsData();
+
+import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import ProductsPageObject from "../support/pages/products.pageObject";
 import CartPageObject from "../support/pages/cart.pageObject";
 
-const mainPage = new PageObject();
+const homePage = new HomePageObject();
 const authPage = new AuthPageObject();
 const productsPage = new ProductsPageObject();
 const cartPage = new CartPageObject();
@@ -21,25 +24,27 @@ describe('Adding products to the cart', () => {
     authPage.typePasswordOfExistingUser(userData.password);
     authPage.clickLoginBtn();
 
-    mainPage.assertLoggedInUser(userData.firstName);
+    homePage.assertLoggedInUser(userData.firstName);
   });
 
   it('should allow to place products into cart', () => {
+    const { product_1, product_2, product_3 } = product;
+
     productsPage.visit();
 
-    productsPage.addProductToCart('1');
+    productsPage.addProductToCart(product_1.id);
     productsPage.clickContinueShoppingBtn();
 
-    productsPage.addProductToCart('2');
+    productsPage.addProductToCart(product_2.id);
     productsPage.clickContinueShoppingBtn();
 
-    productsPage.addProductToCart('3');
+    productsPage.addProductToCart(product_3.id);
     productsPage.clickContinueShoppingBtn();
 
     cartPage.visit();
 
-    cy.assertProductAdded('product-1');
-    cy.assertProductAdded('product-2');
-    cy.assertProductAdded('product-3');
+    cy.assertProductAdded(product_1.element);
+    cy.assertProductAdded(product_2.element);
+    cy.assertProductAdded(product_3.element);
   });
 });

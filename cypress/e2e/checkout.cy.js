@@ -6,14 +6,14 @@ const { generateBankCardData } = require('../support/fixtures/bankCardData');
 const userData = existingUserData();
 const cardData = generateBankCardData();
 
-import PageObject from "../support/pages/PageObject";
+import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import CartPageObject from "../support/pages/cart.pageObject";
 import CheckoutPageObject from "../support/pages/checkout.pageObject";
 import PaymentPageObject from "../support/pages/payment.pageObject";
 import PaymentDoneObject from "../support/pages/paymentDone.pageObject";
 
-const mainPage = new PageObject;
+const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 const cartPage = new CartPageObject;
 const checkoutPage = new CheckoutPageObject;
@@ -28,7 +28,7 @@ describe('Checkout process', () => {
     authPage.typePasswordOfExistingUser(userData.password);
     authPage.clickLoginBtn();
 
-    mainPage.assertLoggedInUser(userData.firstName);
+    homePage.assertLoggedInUser(userData.firstName);
   });
 
   it('should allow to complete checkout', () => {
@@ -37,7 +37,6 @@ describe('Checkout process', () => {
     cy.addProductToCart(3);
 
     cartPage.visit();
-
     cartPage.clickProceedToCheckoutBtn();
 
     checkoutPage.clickPlaceOrderBtn();
@@ -47,7 +46,6 @@ describe('Checkout process', () => {
     paymentPage.typeCardCVC(cardData.cvc);
     paymentPage.typeCardExpiryMonth(cardData.expMonth);
     paymentPage.typeCardExpiryYear(cardData.expYear);
-
     paymentPage.clickPayBtn();
 
     paymentDonePage.assertOrderPlaced();
