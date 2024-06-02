@@ -1,6 +1,6 @@
 import PageObject from "./PageObject";
 
-class PaymentDoneObject extends PageObject {
+class PaymentDonePageObject extends PageObject {
   assertOrderPlaced() {
     cy.getByDataQa('order-placed')
       .should('contain.text', 'Order Placed!');
@@ -11,4 +11,4 @@ class PaymentDoneObject extends PageObject {
   }
 }
 
-export default PaymentDoneObject;
+export default PaymentDonePageObject;

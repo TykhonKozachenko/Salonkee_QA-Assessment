@@ -1,26 +1,27 @@
 /// <reference types='cypress' />
 
-const { existingUserData } = require('../support/fixtures/existingUser');
-const { generateBankCardData } = require('../support/fixtures/bankCardData');
-const { productsData } = require('../support/fixtures/productsData');
-
-const userData = existingUserData();
-const cardData = generateBankCardData();
-const { firstProduct, secondProduct, thirdProduct } = productsData();
-
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import CartPageObject from "../support/pages/cart.pageObject";
 import CheckoutPageObject from "../support/pages/checkout.pageObject";
 import PaymentPageObject from "../support/pages/payment.pageObject";
-import PaymentDoneObject from "../support/pages/paymentDone.pageObject";
+import PaymentDonePageObject from "../support/pages/paymentDone.pageObject";
 
 const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 const cartPage = new CartPageObject;
 const checkoutPage = new CheckoutPageObject;
 const paymentPage = new PaymentPageObject;
-const paymentDonePage = new PaymentDoneObject;
+const paymentDonePage = new PaymentDonePageObject;
+
+const { existingUserData } = require('../support/fixtures/existingUserData');
+const userData = existingUserData();
+
+const { productsData } = require('../support/fixtures/productsData');
+const { firstProduct, secondProduct, thirdProduct } = productsData();
+
+const { generateBankCardData } = require('../support/fixtures/bankCardData');
+const cardData = generateBankCardData();
 
 describe('Checkout process', () => {
   before(() => {

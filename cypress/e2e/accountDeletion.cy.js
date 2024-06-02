@@ -1,8 +1,5 @@
 /// <reference types='cypress' />
 
-const { generateNewUserApi } = require('../support/fixtures/newUserViaAPI');
-const userDataApi = generateNewUserApi();
-
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import AccountDeletedPageObject from "../support/pages/accountDeleted.pageObject";
@@ -10,6 +7,9 @@ import AccountDeletedPageObject from "../support/pages/accountDeleted.pageObject
 const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 const accountDeletedPage = new AccountDeletedPageObject;
+
+const { generateNewUserApi } = require('../support/fixtures/newUserViaAPI');
+const userDataApi = generateNewUserApi();
 
 describe('Account deletion', () => {
   beforeEach(() => {

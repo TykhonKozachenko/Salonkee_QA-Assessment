@@ -1,8 +1,5 @@
 /// <reference types='cypress' />
 
-const { generateNewUserUi } = require('../support/fixtures/newUserViaUI');
-const userDataUi = generateNewUserUi();
-
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import RegistrationPageObject from "../support/pages/registration.pageObject";
@@ -12,6 +9,9 @@ const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 const registrationPage = new RegistrationPageObject;
 const accountCreatedPage = new AccountCreatedPageObject;
+
+const { generateNewUserUi } = require('../support/fixtures/newUserViaUI');
+const userDataUi = generateNewUserUi();
 
 describe('Account registration', () => {
   before(() => {

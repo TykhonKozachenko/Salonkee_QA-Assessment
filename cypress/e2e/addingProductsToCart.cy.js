@@ -1,11 +1,5 @@
 /// <reference types='cypress' />
 
-const { existingUserData } = require('../support/fixtures/existingUser');
-const { productsData } = require('../support/fixtures/productsData');
-
-const userData = existingUserData();
-const { firstProduct, secondProduct, thirdProduct } = productsData();
-
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
 import ProductsPageObject from "../support/pages/products.pageObject";
@@ -15,6 +9,12 @@ const homePage = new HomePageObject();
 const authPage = new AuthPageObject();
 const productsPage = new ProductsPageObject();
 const cartPage = new CartPageObject();
+
+const { existingUserData } = require('../support/fixtures/existingUserData');
+const userData = existingUserData();
+
+const { productsData } = require('../support/fixtures/productsData');
+const { firstProduct, secondProduct, thirdProduct } = productsData();
 
 describe('Adding products to the cart', () => {
   before(() => {
