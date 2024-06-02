@@ -7,7 +7,7 @@ function generateBankCardData() {
     number: faker.finance.accountNumber(16),
     cvc: faker.finance.creditCardCVV(),
     expMonth: (Math.floor(Math.random() * 12) + 1).toString().padStart(2, '0'),
-    expYear: (Math.floor(Math.random() * 5) + currentYear).toString(),
+    expYear: (Math.floor(Math.random() * 10) + currentYear)
   };
 }
 
