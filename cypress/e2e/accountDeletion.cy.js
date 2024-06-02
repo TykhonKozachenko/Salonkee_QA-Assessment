@@ -13,31 +13,29 @@ const userDataApi = generateNewUserApi();
 
 describe('Account deletion', () => {
   beforeEach(() => {
+    cy.generateUser(userDataApi).as('userData');
+
     authPage.visit();
   })
 
   it('should allow to delete account via UI', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        authPage.typeEmailOfExistingUser(userData.email);
-        authPage.typePasswordOfExistingUser(userData.password);
-        authPage.clickLoginBtn();
+    cy.get('@userData').then((userData) => {
+      authPage.typeEmailOfExistingUser(userData.email);
+      authPage.typePasswordOfExistingUser(userData.password);
+      authPage.clickLoginBtn();
 
-        homePage.visit();
-        homePage.clickDeleteBtn();
-  
-        accountDeletedPage.assertAccountDeleted();
-        accountDeletedPage.clickContinueBtn();
-      })
+      homePage.visit();
+      homePage.clickDeleteBtn();
+
+      accountDeletedPage.assertAccountDeleted();
+      accountDeletedPage.clickContinueBtn();
     })
   });
 
   it('should allow to delete account via API', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        cy.deleteUserAccount(userData).then(() => {
-          cy.verifyLogin(userData);
-        });
+    cy.get('@userData').then((userData) => {
+      cy.deleteUserAccount(userData).then(() => {
+        cy.verifyLogin(userData);
       });
     });
   });

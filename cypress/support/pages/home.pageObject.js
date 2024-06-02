@@ -10,7 +10,9 @@ class HomePageObject extends PageObject {
   }
 
   clickDeleteBtn() {
-    cy.contains('Delete Account').click();
+    cy.get('.nav.navbar-nav')
+      .contains('li', 'Delete Account')
+      .click();
   }
 }
 

@@ -11,9 +11,9 @@ const userDataApi = generateNewUserApi();
 
 describe('Login', () => {
   before(() => {
-    authPage.visit();
-    
     cy.generateUser(userDataApi).as('userData');
+
+    authPage.visit();
   })
 
   it('should allow to login with created credentials', () => {
