@@ -10,19 +10,19 @@ const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
 
 describe('Login', () => {
-  beforeEach(() => {
+  before(() => {
     authPage.visit();
+    
+    cy.generateUser(userDataApi).as('userData');
   })
 
   it('should allow to login with created credentials', () => {
-    cy.generateUser(userDataApi).then(() => {
-      cy.get('@userData').then((userData) => {
-        authPage.typeEmailOfExistingUser(userData.email);
-        authPage.typePasswordOfExistingUser(userData.password);
-        authPage.clickLoginBtn();
-  
-        homePage.assertLoggedInUser(userData.name);
-      });
+    cy.get('@userData').then((userData) => {
+      authPage.typeEmailOfExistingUser(userData.email);
+      authPage.typePasswordOfExistingUser(userData.password);
+      authPage.clickLoginBtn();
+
+      homePage.assertLoggedInUser(userData.name);
     });
   });
 });

@@ -1,14 +1,14 @@
 function productsData() {
   return {
-    product_1: {
+    firstProduct: {
       id: '1',
       element: 'product-1',
     },
-    product_2: {
+    secondProduct: {
       id: '2',
       element: 'product-2',
     },
-    product_3: {
+    thirdProduct: {
       id: '3',
       element: 'product-3',
     },

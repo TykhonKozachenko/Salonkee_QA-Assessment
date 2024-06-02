@@ -14,7 +14,7 @@ const registrationPage = new RegistrationPageObject;
 const accountCreatedPage = new AccountCreatedPageObject;
 
 describe('Account registration', () => {
-  beforeEach(() => {
+  before(() => {
     authPage.visit();
   });
 

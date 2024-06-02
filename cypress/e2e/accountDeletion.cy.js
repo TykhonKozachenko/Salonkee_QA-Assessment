@@ -16,7 +16,7 @@ describe('Account deletion', () => {
     authPage.visit();
   })
 
-  it.only('should allow to delete account via UI', () => {
+  it('should allow to delete account via UI', () => {
     cy.generateUser(userDataApi).then(() => {
       cy.get('@userData').then((userData) => {
         authPage.typeEmailOfExistingUser(userData.email);

@@ -2,9 +2,11 @@
 
 const { existingUserData } = require('../support/fixtures/existingUser');
 const { generateBankCardData } = require('../support/fixtures/bankCardData');
+const { productsData } = require('../support/fixtures/productsData');
 
 const userData = existingUserData();
 const cardData = generateBankCardData();
+const { firstProduct, secondProduct, thirdProduct } = productsData();
 
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
@@ -29,13 +31,13 @@ describe('Checkout process', () => {
     authPage.clickLoginBtn();
 
     homePage.assertLoggedInUser(userData.firstName);
+
+    cy.addProductToCart(firstProduct.id);
+    cy.addProductToCart(secondProduct.id);
+    cy.addProductToCart(thirdProduct.id);
   });
 
   it('should allow to complete checkout', () => {
-    cy.addProductToCart(1);
-    cy.addProductToCart(2);
-    cy.addProductToCart(3);
-
     cartPage.visit();
     cartPage.clickProceedToCheckoutBtn();
 

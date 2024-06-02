@@ -4,7 +4,7 @@ const { existingUserData } = require('../support/fixtures/existingUser');
 const { productsData } = require('../support/fixtures/productsData');
 
 const userData = existingUserData();
-const product = productsData();
+const { firstProduct, secondProduct, thirdProduct } = productsData();
 
 import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
@@ -28,23 +28,21 @@ describe('Adding products to the cart', () => {
   });
 
   it('should allow to place products into cart', () => {
-    const { product_1, product_2, product_3 } = product;
-
     productsPage.visit();
 
-    productsPage.addProductToCart(product_1.id);
+    productsPage.addProductToCart(firstProduct.id);
     productsPage.clickContinueShoppingBtn();
 
-    productsPage.addProductToCart(product_2.id);
+    productsPage.addProductToCart(secondProduct.id);
     productsPage.clickContinueShoppingBtn();
 
-    productsPage.addProductToCart(product_3.id);
+    productsPage.addProductToCart(thirdProduct.id);
     productsPage.clickContinueShoppingBtn();
 
     cartPage.visit();
 
-    cy.assertProductAdded(product_1.element);
-    cy.assertProductAdded(product_2.element);
-    cy.assertProductAdded(product_3.element);
+    cartPage.assertProductAdded(firstProduct.element);
+    cartPage.assertProductAdded(secondProduct.element);
+    cartPage.assertProductAdded(thirdProduct.element);
   });
 });

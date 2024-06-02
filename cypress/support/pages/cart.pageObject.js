@@ -7,6 +7,10 @@ class CartPageObject extends PageObject {
     cy.contains('.btn', 'Proceed To Checkout').click();
   }
 
+  assertProductAdded(elementId) {
+    cy.get(`#${elementId}`).should('exist');
+  }
+
   assertCartIsEmpty() {
     cy.get('#empty_cart')
       .should('be.visible')
