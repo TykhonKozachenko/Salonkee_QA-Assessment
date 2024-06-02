@@ -4,7 +4,9 @@ class HomePageObject extends PageObject {
   url = '/';
 
   assertLoggedInUser(firstName) {
-    cy.get('li > a > b').should('contain', firstName);
+    cy.get('.nav.navbar-nav')
+      .contains('li', 'Logged in as')
+      .should('contain.text', firstName);
   }
 
   clickDeleteBtn() {
