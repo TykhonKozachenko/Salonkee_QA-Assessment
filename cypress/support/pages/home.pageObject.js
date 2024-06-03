@@ -9,7 +9,7 @@ class HomePageObject extends PageObject {
       .should('contain.text', firstName);
   }
 
-  clickDeleteBtn() {
+  clickDeleteAccountBtn() {
     cy.get('.nav.navbar-nav')
       .contains('li', 'Delete Account')
       .click();

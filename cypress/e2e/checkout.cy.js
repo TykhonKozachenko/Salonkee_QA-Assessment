@@ -1,14 +1,14 @@
 /// <reference types='cypress' />
 
-import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
+import HomePageObject from "../support/pages/home.pageObject";
 import CartPageObject from "../support/pages/cart.pageObject";
 import CheckoutPageObject from "../support/pages/checkout.pageObject";
 import PaymentPageObject from "../support/pages/payment.pageObject";
 import PaymentDonePageObject from "../support/pages/paymentDone.pageObject";
 
-const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
+const homePage = new HomePageObject;
 const cartPage = new CartPageObject;
 const checkoutPage = new CheckoutPageObject;
 const paymentPage = new PaymentPageObject;

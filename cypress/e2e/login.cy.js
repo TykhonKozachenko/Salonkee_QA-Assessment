@@ -1,10 +1,10 @@
 /// <reference types='cypress' />
 
-import HomePageObject from "../support/pages/home.pageObject";
 import AuthPageObject from "../support/pages/auth.pageObject";
+import HomePageObject from "../support/pages/home.pageObject";
 
-const homePage = new HomePageObject;
 const authPage = new AuthPageObject;
+const homePage = new HomePageObject;
 
 const { generateNewUserApi } = require('../support/fixtures/newUserViaAPI');
 const userDataApi = generateNewUserApi();

@@ -25,7 +25,7 @@ describe('Account deletion', () => {
       authPage.clickLoginBtn();
 
       homePage.visit();
-      homePage.clickDeleteBtn();
+      homePage.clickDeleteAccountBtn();
 
       accountDeletedPage.assertAccountDeleted();
       accountDeletedPage.clickContinueBtn();
